@@ -18,9 +18,30 @@ const inter = Inter({
   weight: ["400", "700"],
 });
 
+// 🧠 Concept — metadataBase
+// Next.js a besoin d'une URL absolue de référence pour transformer les
+// chemins relatifs (comme l'image OpenGraph auto-générée) en URLs complètes
+// dans les balises <meta og:image>. Sur Vercel, l'URL du déploiement est
+// fournie automatiquement via une variable d'environnement — on n'a rien à
+// configurer à la main, avec un repli sur localhost en développement.
+const siteUrl =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl ? `https://${siteUrl}` : "http://localhost:3000"),
   title: "Wali",
   description: "Suivi simple du salaire et des dépenses, en GNF.",
+  openGraph: {
+    title: "Wali",
+    description: "Suivi simple du salaire et des dépenses, en GNF.",
+    type: "website",
+    locale: "fr_FR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wali",
+    description: "Suivi simple du salaire et des dépenses, en GNF.",
+  },
 };
 
 export const viewport: Viewport = {
