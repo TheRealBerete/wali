@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wali - Ajouter une dépense</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#201c00",
+                        "on-primary-container": "#706400",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-error": "#690005",
+                        "surface": "#121414",
+                        "on-primary-fixed-variant": "#504700",
+                        "on-secondary-container": "#b5b5b5",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "surface-container-high": "#282a2b",
+                        "on-surface": "#e2e2e2",
+                        "surface-variant": "#333535",
+                        "on-primary": "#373100",
+                        "on-secondary-fixed-variant": "#474747",
+                        "inverse-on-surface": "#2f3131",
+                        "on-background": "#e2e2e2",
+                        "primary-fixed": "#fde403",
+                        "surface-bright": "#37393a",
+                        "secondary-fixed": "#e2e2e2",
+                        "background": "#121414",
+                        "tertiary-container": "#e4e1e0",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-tertiary": "#313030",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "outline-variant": "#4b4732",
+                        "primary-container": "#fce300",
+                        "primary": "#fffeff",
+                        "surface-tint": "#dec800",
+                        "secondary-container": "#474747",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "primary-fixed-dim": "#dec800",
+                        "surface-container-highest": "#333535",
+                        "on-secondary": "#303030",
+                        "tertiary": "#fdffff",
+                        "on-surface-variant": "#cdc7ab",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#6a5f00",
+                        "surface-container": "#1e2020",
+                        "inverse-surface": "#e2e2e2",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#979177",
+                        "secondary": "#c6c6c6",
+                        "on-tertiary-container": "#656463",
+                        "surface-container-lowest": "#0c0f0f",
+                        "surface-dim": "#121414"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .category-input:checked + label {
+            border-color: #fce300;
+            background-color: rgba(252, 227, 0, 0.1);
+        }
+        .category-input:checked + label span.material-symbols-outlined {
+            color: #fce300;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-white text-black min-h-screen flex flex-col font-body-lg">
+<!-- Header (TopAppBar equivalent for focused flow, suppressed main nav as per rules) -->
+<header class="w-full top-0 sticky bg-white flat no shadows flex justify-between items-center px-margin-mobile py-4 z-50">
+<button aria-label="Fermer" class="text-gray-800 hover:opacity-80 transition-opacity duration-200 p-2 -ml-2 rounded-full active:bg-gray-100" type="button">
+<span class="material-symbols-outlined" style="font-size: 28px;">close</span>
+</button>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary-fixed">Wali</span>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-margin-mobile pb-[100px] max-w-container-max mx-auto w-full pt-8">
+<!-- Numeric Input Area -->
+<section class="flex flex-col items-center justify-center py-10 mb-8 relative">
+<span class="font-label-caps text-label-caps text-gray-600 uppercase mb-4">Montant de la dépense</span>
+<div class="flex items-end justify-center w-full relative">
+<!-- Main Input -->
+<input class="bg-transparent border-none outline-none font-display-lg text-display-lg text-center text-primary-fixed w-full placeholder-gray-300 focus:ring-0 px-0" id="amount-input" inputmode="numeric" placeholder="0" type="text" value="45 000"/>
+</div>
+<div class="mt-2 text-gray-800 font-title-md text-title-md">
+                GNF
+            </div>
+<!-- Minimalist underline indicating input focus/active state -->
+<div class="w-24 h-[2px] bg-primary-fixed mt-8 opacity-50"></div>
+</section>
+<!-- Category Grid -->
+<section class="flex-grow flex flex-col">
+<h2 class="font-title-md text-title-md text-black mb-6 text-center">Catégorie</h2>
+<div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+<!-- Food -->
+<div class="relative">
+<input checked="" class="sr-only category-input" id="cat-food" name="category" type="radio"/>
+<label class="flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer transition-all duration-200 hover:border-primary-fixed/50 group h-full" for="cat-food">
+<span class="material-symbols-outlined mb-3 text-gray-700 group-hover:text-black transition-colors" style="font-size: 32px;">restaurant</span>
+<span class="font-body-sm text-body-sm text-gray-700 group-hover:text-black">Alimentation</span>
+</label>
+</div>
+<!-- Transport -->
+<div class="relative">
+<input class="sr-only category-input" id="cat-transport" name="category" type="radio"/>
+<label class="flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer transition-all duration-200 hover:border-primary-fixed/50 group h-full" for="cat-transport">
+<span class="material-symbols-outlined mb-3 text-gray-700 group-hover:text-black transition-colors" style="font-size: 32px;">directions_car</span>
+<span class="font-body-sm text-body-sm text-gray-700 group-hover:text-black">Transport</span>
+</label>
+</div>
+<!-- Rent -->
+<div class="relative">
+<input class="sr-only category-input" id="cat-rent" name="category" type="radio"/>
+<label class="flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer transition-all duration-200 hover:border-primary-fixed/50 group h-full" for="cat-rent">
+<span class="material-symbols-outlined mb-3 text-gray-700 group-hover:text-black transition-colors" style="font-size: 32px;">home</span>
+<span class="font-body-sm text-body-sm text-gray-700 group-hover:text-black">Logement</span>
+</label>
+</div>
+<!-- Leisure -->
+<div class="relative">
+<input class="sr-only category-input" id="cat-leisure" name="category" type="radio"/>
+<label class="flex flex-col items-center justify-center p-6 rounded-xl border border-gray-200 bg-gray-50 cursor-pointer transition-all duration-200 hover:border-primary-fixed/50 group h-full" for="cat-leisure">
+<span class="material-symbols-outlined mb-3 text-gray-700 group-hover:text-black transition-colors" style="font-size: 32px;">sports_esports</span>
+<span class="font-body-sm text-body-sm text-gray-700 group-hover:text-black">Loisirs</span>
+</label>
+</div>
+</div>
+<!-- Optional Note Field (Minimal) -->
+<div class="mt-8 mb-4 border-b border-gray-300 focus-within:border-primary-fixed transition-colors">
+<input class="w-full bg-transparent border-none outline-none text-black placeholder-gray-500 font-body-sm text-body-sm py-3 px-1 focus:ring-0" placeholder="Ajouter une note (optionnel)" type="text"/>
+</div>
+</section>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-gradient-to-t from-white via-white to-transparent z-40 pb-safe">
+<div class="max-w-container-max mx-auto">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-headline-lg-mobile text-headline-lg-mobile h-[64px] rounded-full flex items-center justify-center active:scale-95 transition-transform shadow-[0_0_15px_rgba(253,228,3,0.2)]">
+                Ajouter
+            </button>
+</div>
+</div>
+<!-- Script for basic interaction formatting -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const amountInput = document.getElementById('amount-input');
+            
+            // Basic number formatting (spaces for thousands)
+            amountInput.addEventListener('input', function(e) {
+                // Remove non-digits
+                let value = this.value.replace(/\D/g, '');
+                
+                // Format with spaces
+                if (value) {
+                    value = parseInt(value, 10).toLocaleString('fr-FR').replace(/\s/g, ' ');
+                }
+                
+                this.value = value;
+            });
+            
+            // Auto-focus input on load for immediate entry
+            setTimeout(() => {
+                amountInput.focus();
+                // Move cursor to end
+                amountInput.setSelectionRange(amountInput.value.length, amountInput.value.length);
+            }, 300);
+        });
+    </script>
+</body></html>

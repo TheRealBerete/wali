@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --background: #121414;
+  --surface: #1a1c1c;
+  --surface-strong: #282a2b;
+  --border: #333535;
+  --on-surface: #e2e2e2;
+  --muted: #cdc7ab;
+  --primary: #fce300;
+  --on-primary: #201c00;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border);
+  --color-on-surface: var(--on-surface);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+
+  --font-display: var(--font-jakarta);
+  --font-label: var(--font-inter);
+
+  --radius-card: 0.75rem;
+
+  /* 🧠 Concept — --animate-* dans Tailwind v4
+     Déclarer une variable --animate-<nom> ici génère automatiquement une
+     classe utilitaire `animate-<nom>` (comme `animate-spin` en natif), qui
+     pointe vers le @keyframes du même nom défini plus bas. */
+  --animate-fade-in-up: fade-in-up 0.4s ease-out both;
+  --animate-fade-in: fade-in 0.3s ease-out both;
+  --animate-scale-in: scale-in 0.18s ease-out both;
+}
+
+body {
+  background: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 🧠 Concept — Material Symbols
+   C'est une police d'icônes (chaque icône est juste un caractère à afficher).
+   On la charge une fois dans layout.tsx, puis on écrit <span class="material-symbols-outlined">home</span>
+   pour afficher l'icône "home". Ça évite d'installer une lib d'icônes séparée. */
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 500,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+/* Cache la barre de défilement (utilisé pour la timeline horizontale/modales) tout en gardant le scroll fonctionnel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 🧠 Concept — prefers-reduced-motion
+   Certain·e·s utilisateur·rice·s activent ce réglage système (mal de mer
+   numérique, épilepsie photosensible, simple préférence). Cette media query
+   neutralise nos animations pour eux sans qu'on ait à dupliquer le code. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

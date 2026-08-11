@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wali Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#201c00",
+                        "on-primary-container": "#706400",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-error": "#690005",
+                        "surface": "#121414",
+                        "on-primary-fixed-variant": "#504700",
+                        "on-secondary-container": "#b5b5b5",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1a1c1c",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "surface-container-high": "#282a2b",
+                        "on-surface": "#e2e2e2",
+                        "surface-variant": "#333535",
+                        "on-primary": "#373100",
+                        "on-secondary-fixed-variant": "#474747",
+                        "inverse-on-surface": "#2f3131",
+                        "on-background": "#e2e2e2",
+                        "primary-fixed": "#fde403",
+                        "surface-bright": "#37393a",
+                        "secondary-fixed": "#e2e2e2",
+                        "background": "#121414",
+                        "tertiary-container": "#e4e1e0",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-tertiary": "#313030",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "outline-variant": "#4b4732",
+                        "primary-container": "#fce300",
+                        "primary": "#fffeff",
+                        "surface-tint": "#dec800",
+                        "secondary-container": "#474747",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "primary-fixed-dim": "#dec800",
+                        "surface-container-highest": "#333535",
+                        "on-secondary": "#303030",
+                        "tertiary": "#fdffff",
+                        "on-surface-variant": "#cdc7ab",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#6a5f00",
+                        "surface-container": "#1e2020",
+                        "inverse-surface": "#e2e2e2",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#979177",
+                        "secondary": "#c6c6c6",
+                        "on-tertiary-container": "#656463",
+                        "surface-container-lowest": "#0c0f0f",
+                        "surface-dim": "#121414"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .glass-nav { background: rgba(18, 20, 20, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        .glow-active { box-shadow: 0 0 8px theme('colors.primary-fixed'); }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-body-lg min-h-screen pb-24 selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar (From JSON) -->
+<header class="bg-background dark:bg-surface-container-lowest w-full top-0 sticky z-50">
+<div class="flex justify-between items-center px-margin-mobile py-4">
+<button aria-label="Menu" class="transition-opacity duration-200 hover:opacity-80 text-primary-fixed dark:text-primary-fixed-dim">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</button>
+<h1 class="font-display-lg text-display-lg font-extrabold text-primary-fixed dark:text-primary-fixed-dim">Wali</h1>
+<button aria-label="Notifications" class="transition-opacity duration-200 hover:opacity-80 text-primary-fixed dark:text-primary-fixed-dim">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-4 max-w-container-max mx-auto space-y-8">
+<!-- Welcome Section -->
+<section class="flex justify-between items-end">
+<div>
+<p class="font-body-sm text-on-surface-variant text-body-sm">Bonjour,</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:font-headline-lg md:text-headline-lg">Mariam Diallo</h2>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden border border-surface-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional, high-contrast portrait of a young West African woman smiling subtly, set against a dark, minimalist background. The lighting highlights her features with a soft glow, fitting a premium dark-mode financial app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB77pt9UXIinOosdIXVRCp_FbzSEnqtrayHLnv1ezz7n0bHqILxjOuA-i5_QG_JIQjomAMFS5X-fGccUDyX1rTLU6zHXXhmfXYjytRUFbxhRE3qt4bln3hc5sp1HJpUv0I0ckEyU-wyDYkVSPqrLhZRcq3DAZiBp1Ee4GSrlBmoOFrZc9eNHbHl7JxU8FeKnaNXMIgHZ4Bz_3FtoluvKEYPK0QDmWYP7gsahRoS_WpCKwRsYoF0qYRfQ"/>
+</div>
+</section>
+<!-- Main Balance Card -->
+<section class="bg-primary-fixed rounded-xl p-6 relative overflow-hidden shadow-[0_4px_24px_rgba(253,228,3,0.15)]">
+<div class="relative z-10">
+<p class="font-body-sm text-body-sm text-on-primary-fixed opacity-80 mb-1 font-semibold uppercase tracking-wider">Solde Total</p>
+<div class="flex items-baseline space-x-2">
+<h3 class="font-display-lg text-display-lg text-on-primary-fixed">2.500.000</h3>
+<span class="font-title-md text-title-md text-on-primary-fixed">GNF</span>
+</div>
+<div class="mt-6 flex space-x-4">
+<button class="flex-1 bg-surface text-primary-fixed font-title-md text-title-md py-3 rounded-lg flex items-center justify-center space-x-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-xl">arrow_upward</span>
+<span>Envoyer</span>
+</button>
+<button class="flex-1 bg-transparent border-2 border-surface text-on-primary-fixed font-title-md text-title-md py-3 rounded-lg flex items-center justify-center space-x-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-xl">add</span>
+<span>Recharger</span>
+</button>
+</div>
+</div>
+<!-- Decorative Pattern -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/4"></div>
+</section>
+<!-- Budget Progress -->
+<section class="bg-surface-container-low rounded-xl p-6 border border-surface-variant">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-title-md text-title-md text-on-surface">Mon Budget Mensuel</h4>
+<span class="font-body-sm text-body-sm text-on-surface-variant">65% Utilisé</span>
+</div>
+<div class="h-3 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between mt-3 font-body-sm text-body-sm">
+<span class="text-on-surface">Dépensé: 1.300.000 GNF</span>
+<span class="text-on-surface-variant">Reste: 700.000 GNF</span>
+</div>
+</section>
+<!-- Recent Transactions -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h4 class="font-title-md text-title-md text-on-surface">Transactions Récentes</h4>
+<a class="font-body-sm text-body-sm text-primary-fixed hover:underline" href="#">Voir tout</a>
+</div>
+<div class="flex flex-col space-y-3">
+<!-- Transaction 1 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-surface-variant hover:border-primary-fixed/30 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/10 flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Restaurant Le Damier</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-label-caps">AUJOURD'HUI, 13:45 • ALIMENTATION</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-secondary-fixed">- 150.000 GNF</span>
+</div>
+<!-- Transaction 2 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-surface-variant hover:border-primary-fixed/30 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/10 flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Taxi Conakry</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-label-caps">HIER, 09:15 • TRANSPORT</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-secondary-fixed">- 40.000 GNF</span>
+</div>
+<!-- Transaction 3 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-surface-variant hover:border-primary-fixed/30 transition-colors">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/10 flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Salaire Orange GN</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-label-caps">24 OCT, 08:00 • REVENU</p>
+</div>
+</div>
+<span class="font-title-md text-title-md text-primary-fixed">+ 3.500.000 GNF</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button aria-label="Nouvelle Transaction" class="fixed bottom-24 right-6 md:right-10 w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(253,228,3,0.3)] hover:scale-105 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-on-primary-fixed text-3xl">add</span>
+</button>
+<!-- BottomNavBar (From JSON - Mobile Only) -->
+<nav class="bg-surface/90 dark:bg-surface-container-low/90 backdrop-blur-md fixed bottom-0 w-full z-50 md:hidden">
+<div class="flex justify-around items-center h-16 px-margin-mobile pb-safe">
+<!-- Dashboard (Active) -->
+<button class="flex flex-col items-center justify-center text-primary-fixed font-bold border-t-2 border-primary-fixed pt-2 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-caps text-label-caps mt-1">Dashboard</span>
+</button>
+<!-- Stats (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant pt-2 hover:text-primary-fixed transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-caps text-label-caps mt-1">Stats</span>
+</button>
+<!-- Profile (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant pt-2 hover:text-primary-fixed transition-colors scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</button>
+</div>
+</nav>
+</body></html>

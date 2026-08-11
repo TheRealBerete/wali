@@ -1,0 +1,32 @@
+# Dépendances
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel
+
+# Variables d'environnement (aucune n'est utilisée par Wali, mais on se protège quand même)
+.env*
+!.env.example
+
+# Éditeurs / OS
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Couverture de tests
+coverage/
+
+# État local de session (Claude Code)
+.claude/

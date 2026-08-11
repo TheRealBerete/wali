@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wali - Financial Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Base Reset & Custom Styling for specific non-Tailwind requirements */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif; /* Fallback */
+            background-color: #121414; /* Fallback for tailwind config surface */
+            color: #e2e2e2; /* Fallback for tailwind config on-surface */
+        }
+        
+        /* Material Symbols Setup */
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Scrollbar for sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121414; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333535; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #474747; 
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#dec800",
+                    "surface-container-high": "#282a2b",
+                    "surface-container-low": "#1a1c1c",
+                    "inverse-primary": "#6a5f00",
+                    "on-primary-fixed": "#201c00",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-error-container": "#ffdad6",
+                    "surface-container": "#1e2020",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "on-primary": "#373100",
+                    "primary-fixed": "#fde403",
+                    "inverse-on-surface": "#2f3131",
+                    "on-secondary-container": "#b5b5b5",
+                    "outline": "#979177",
+                    "surface-variant": "#333535",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "primary-fixed-dim": "#dec800",
+                    "surface": "#121414",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "outline-variant": "#4b4732",
+                    "on-primary-fixed-variant": "#504700",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "surface-bright": "#37393a",
+                    "inverse-surface": "#e2e2e2",
+                    "on-secondary": "#303030",
+                    "on-secondary-fixed-variant": "#474747",
+                    "secondary-fixed": "#e2e2e2",
+                    "secondary": "#c6c6c6",
+                    "on-background": "#e2e2e2",
+                    "on-primary-container": "#706400",
+                    "surface-container-lowest": "#0c0f0f",
+                    "error-container": "#93000a",
+                    "on-surface-variant": "#cdc7ab",
+                    "tertiary-container": "#e4e1e0",
+                    "surface-dim": "#121414",
+                    "on-tertiary-container": "#656463",
+                    "secondary-container": "#474747",
+                    "tertiary": "#fdffff",
+                    "surface-container-highest": "#333535",
+                    "primary-container": "#fce300",
+                    "on-surface": "#e2e2e2",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "on-tertiary": "#313030",
+                    "tertiary-fixed": "#e5e2e1",
+                    "primary": "#fffeff",
+                    "background": "#121414"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-desktop": "40px",
+                    "container-max": "1200px",
+                    "margin-mobile": "20px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "title-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "title-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface dark:bg-surface text-on-surface font-body-lg text-body-lg antialiased overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<div class="flex h-screen w-full">
+<!-- SideNavBar from JSON -->
+<!-- "style_component_shape": "h-screen w-64 fixed left-0 top-0", -->
+<!-- "style_bg_color": "bg-surface dark:bg-surface", -->
+<!-- "style_separation_logic": "border-r border-outline-variant", -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface border-r border-outline-variant flex flex-col z-20 transition-all duration-200 ease-in-out py-margin-desktop hidden md:flex">
+<!-- Brand Section -->
+<div class="px-gutter mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT overflow-hidden">
+<!-- Image strictly from available images list -->
+<img alt="Wali Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLt-1yCpCYSzh7lBolFaMPSrHc8qUKevTBhEeNKVV6ccasMlHr6HsgrzYpIWOVyIsOc3gr_aG-H3uUYtZ5R4SJ3SmVTDCb6TyI_GbEdmUxYlZl9maA69J3JwbfahlUr4ra9LN077BWfGg_y_JyMQ_yIx_0aljXEjT5KZd9scinpSUSmmCJBa1Dj7gMWoJOJMpg-2N18OZlygK971vctKSDGh-8yR-1TTldGhCPbb67vdtP59b2l4tzJ4fhVm"/>
+</div>
+<!-- "style_brand_logo": "font-display-lg text-display-lg text-primary-fixed", -->
+<!-- Note: Adjusted scale slightly for realistic sidebar fit while maintaining the requested tokens -->
+<span class="font-headline-lg text-headline-lg text-primary-fixed">Wali</span>
+</div>
+<!-- Profile Overview (Derived from header_title/subtext) -->
+<div class="px-gutter mb-8">
+<div class="flex items-center gap-3 bg-surface-container p-3 rounded-lg border border-outline-variant">
+<img alt="User profile" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A striking minimalist portrait of a confident young Guinean professional. High-contrast lighting with a clean, deep black background. The subject is well-lit with subtle warm highlights, wearing a modern, tailored dark jacket. The image has a highly polished, premium fintech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWP07_To9aHvJGXi9MtIpNg7OzNPUGhb7J4RUps8JqyJkHoGk_7V1rwjX8z3ATO2dAGHg2EOyh0hoc9p0niNgKdhQJMrl3WoJkLOwMa4kxxIdqy904tQ9ubeVpN9bw7xstXKQXNecRfxEsIgIr1owZjdoLinVmddJ8OQbEcIeZI_SODNgSWjwmqij0Sb4J9IvnnPmkE7ebWX0jJ8eQw0b-4hklTeG9kAb2kcjQaFsQrWnkmnsNo01m8w"/>
+<div>
+<div class="font-title-md text-title-md text-on-surface">Wali</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Financial Control</div>
+</div>
+</div>
+</div>
+<!-- Main Navigation -->
+<!-- "style_shell_layout": "flex flex-col h-full py-unit-margin-desktop" applied to parent/nav -->
+<nav class="flex-1 flex flex-col gap-2 px-gutter overflow-y-auto">
+<!-- Tab 1: Dashboard (ACTIVE) -->
+<!-- "style_active_navigation": "text-primary-fixed border-r-2 border-primary-fixed font-bold bg-surface-container-high", -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-l-lg transition-all duration-200 ease-in-out hover:bg-surface-container hover:text-on-surface text-primary-fixed border-r-2 border-primary-fixed font-bold bg-surface-container-high" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Tab 2: Statistics -->
+<!-- "style_inactive_navigation": "text-on-surface-variant", -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-l-lg transition-all duration-200 ease-in-out hover:bg-surface-container hover:text-on-surface text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Statistics</span>
+</a>
+<!-- Tab 3: Profile -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-l-lg transition-all duration-200 ease-in-out hover:bg-surface-container hover:text-on-surface text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- Bottom Section (CTA + Footer Tabs) -->
+<div class="px-gutter mt-auto pt-8 flex flex-col gap-4">
+<!-- CTA -->
+<button class="w-full bg-primary-container text-on-primary-container font-title-md text-title-md font-bold h-14 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined">add</span>
+<span>Add Transaction</span>
+</button>
+<!-- Footer Tabs -->
+<div class="flex flex-col gap-1 border-t border-outline-variant pt-4 mt-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ease-in-out hover:bg-surface-container hover:text-on-surface text-on-surface-variant text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ease-in-out hover:bg-surface-container hover:text-on-surface text-on-surface-variant text-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span>Help</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 h-screen overflow-y-auto bg-surface relative">
+<!-- TopNavBar (For context, hidden on desktop per "fixed top-0 right-0 w-[calc(100%-16rem)] z-50", usually we just put the actions in the header here if the sidebar is present, but following JSON structure strictly for the top bar) -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-50 bg-surface/15 backdrop-blur-md border-b-0 flat no shadows flex justify-between items-center px-margin-desktop h-20 transition-colors duration-300">
+<!-- Mobile Menu Toggle (hidden on desktop) -->
+<button class="md:hidden text-primary-fixed p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Search (on_right) -->
+<div class="hidden md:flex flex-1 justify-end items-center mr-6">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-sm focus:outline-none focus:border-primary-fixed focus:ring-1 focus:ring-primary-fixed transition-colors text-on-surface placeholder:text-on-surface-variant" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors duration-300 relative">
+<span class="material-symbols-outlined">notifications</span>
+<!-- Notification dot -->
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary-fixed rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="pt-28 pb-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Welcome Section -->
+<div class="mb-10">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Hello, Wali.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here is your financial overview for this month.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+<!-- Main Balance Card (Spans 8 columns on desktop) -->
+<!-- High-contrast minimalism: Pure dark grey with primary yellow accents -->
+<div class="md:col-span-8 bg-[#1A1A1A] border border-[#2C2C2C] rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<!-- Subtle Background Pattern (CSS Gradient instead of image for clean look as requested) -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+<div class="flex justify-between items-start mb-12 relative z-10">
+<div>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-2">Total Balance</h2>
+<!-- Large Typography for financial transparency -->
+<div class="font-display-lg text-display-lg text-primary-fixed flex items-baseline gap-2">
+<span>24,500,000</span>
+<span class="font-title-md text-title-md text-on-surface-variant">GNF</span>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="bg-surface-container-high text-on-surface px-3 py-1 rounded-full font-body-sm text-body-sm flex items-center gap-1 border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-surface-tint">trending_up</span>
+                                    +12.5%
+                                </span>
+</div>
+</div>
+<!-- Quick Actions Inline -->
+<div class="flex gap-4 relative z-10">
+<button class="flex-1 bg-primary-container text-on-primary-container font-title-md text-title-md h-14 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors duration-200">
+<span class="material-symbols-outlined">send</span>
+                                Send
+                            </button>
+<button class="flex-1 bg-transparent border-2 border-outline-variant text-on-surface font-title-md text-title-md h-14 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-high transition-colors duration-200">
+<span class="material-symbols-outlined">download</span>
+                                Receive
+                            </button>
+</div>
+</div>
+<!-- Monthly Budget Progress (Spans 4 columns) -->
+<div class="md:col-span-4 bg-[#1A1A1A] border border-[#2C2C2C] rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-title-md text-title-md text-on-surface">Budget</h2>
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<!-- Circular/Ring Progress conceptualized in CSS -->
+<div class="flex-1 flex flex-col items-center justify-center mb-4">
+<div class="relative w-40 h-40 flex items-center justify-center">
+<!-- Background Track -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#2C2C2C" stroke-linecap="round" stroke-width="10"></circle>
+<!-- Progress Track -->
+<circle class="transition-all duration-1000 ease-out" cx="50" cy="50" fill="none" r="45" stroke="#fde403" stroke-dasharray="282.7" stroke-dashoffset="70" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<!-- Inner Text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-lg text-headline-lg text-on-surface">75%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Spent</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Spent</span>
+<span class="text-on-surface font-semibold">1,500,000 GNF</span>
+</div>
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Remaining</span>
+<span class="text-primary-fixed font-semibold">500,000 GNF</span>
+</div>
+</div>
+</div>
+<!-- Recent Transactions (Spans full 12 columns under the top row) -->
+<div class="md:col-span-12 bg-[#1A1A1A] border border-[#2C2C2C] rounded-xl p-6 mt-4">
+<div class="flex justify-between items-center mb-6 border-b border-outline-variant pb-4">
+<h2 class="font-title-md text-title-md text-on-surface">Recent Transactions</h2>
+<button class="text-primary-fixed font-body-sm text-body-sm font-semibold hover:underline">View All</button>
+</div>
+<!-- Transaction List -->
+<div class="flex flex-col gap-4">
+<!-- Transaction Item: Outgoing (White amount) -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer group border border-transparent hover:border-[#2C2C2C]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<div class="font-body-lg text-body-lg text-on-surface font-semibold group-hover:text-primary-fixed transition-colors">La Fourchette</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant font-normal">Today, 14:30</span>
+<!-- Category Chip -->
+<span class="px-2 py-0.5 rounded-full bg-[#1A1A1A] border border-[#2C2C2C] text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Food</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-title-md text-title-md text-white">- 150,000 GNF</div>
+</div>
+</div>
+<!-- Transaction Item: Incoming (Primary Yellow amount) -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer group border border-transparent hover:border-[#2C2C2C]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">work</span>
+</div>
+<div>
+<div class="font-body-lg text-body-lg text-on-surface font-semibold group-hover:text-primary-fixed transition-colors">Freelance Project</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant font-normal">Yesterday</span>
+<span class="px-2 py-0.5 rounded-full bg-[#1A1A1A] border border-[#2C2C2C] text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Income</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-title-md text-title-md text-primary-fixed">+ 3,000,000 GNF</div>
+</div>
+</div>
+<!-- Transaction Item: Outgoing (White amount) -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors cursor-pointer group border border-transparent hover:border-[#2C2C2C]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div>
+<div class="font-body-lg text-body-lg text-on-surface font-semibold group-hover:text-primary-fixed transition-colors">Apartment Rent</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant font-normal">Oct 01, 2023</span>
+<span class="px-2 py-0.5 rounded-full bg-[#1A1A1A] border border-[#2C2C2C] text-on-surface-variant text-[10px] uppercase font-bold tracking-wider">Housing</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-title-md text-title-md text-white">- 2,500,000 GNF</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

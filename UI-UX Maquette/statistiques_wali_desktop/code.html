@@ -1,0 +1,416 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Wali - Statistics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#dec800",
+                      "surface-container-high": "#282a2b",
+                      "surface-container-low": "#1a1c1c",
+                      "inverse-primary": "#6a5f00",
+                      "on-primary-fixed": "#201c00",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "on-error-container": "#ffdad6",
+                      "surface-container": "#1e2020",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "on-primary": "#373100",
+                      "primary-fixed": "#fde403",
+                      "inverse-on-surface": "#2f3131",
+                      "on-secondary-container": "#b5b5b5",
+                      "outline": "#979177",
+                      "surface-variant": "#333535",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "primary-fixed-dim": "#dec800",
+                      "surface": "#121414",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "outline-variant": "#4b4732",
+                      "on-primary-fixed-variant": "#504700",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface-bright": "#37393a",
+                      "inverse-surface": "#e2e2e2",
+                      "on-secondary": "#303030",
+                      "on-secondary-fixed-variant": "#474747",
+                      "secondary-fixed": "#e2e2e2",
+                      "secondary": "#c6c6c6",
+                      "on-background": "#e2e2e2",
+                      "on-primary-container": "#706400",
+                      "surface-container-lowest": "#0c0f0f",
+                      "error-container": "#93000a",
+                      "on-surface-variant": "#cdc7ab",
+                      "tertiary-container": "#e4e1e0",
+                      "surface-dim": "#121414",
+                      "on-tertiary-container": "#656463",
+                      "secondary-container": "#474747",
+                      "tertiary": "#fdffff",
+                      "surface-container-highest": "#333535",
+                      "primary-container": "#fce300",
+                      "on-surface": "#e2e2e2",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "on-tertiary": "#313030",
+                      "tertiary-fixed": "#e5e2e1",
+                      "primary": "#fffeff",
+                      "background": "#121414"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "margin-desktop": "40px",
+                      "container-max": "1200px",
+                      "margin-mobile": "20px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-bar-bg {
+            background-color: #2C2C2C;
+        }
+        .chart-bar-fill {
+            background-color: #fde403;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 right-0 w-[calc(100%-16rem)] z-50 bg-surface/15 backdrop-blur-md bg-surface dark:bg-surface flex justify-between items-center px-margin-desktop h-20">
+<div class="font-headline-lg text-headline-lg text-primary-fixed font-bold tracking-tight">
+            Wali
+        </div>
+<div class="flex items-center gap-6">
+<button aria-label="notifications" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors duration-300 text-on-surface-variant hover:text-primary-fixed">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="settings" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container transition-colors duration-300 text-on-surface-variant hover:text-primary-fixed">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A detailed headshot portrait of a young professional West African man or woman. High-contrast lighting emphasizing sleek, modern aesthetics. The background is a solid deep grey to match the high-end fintech UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGdkMdQsL2EdRpx63UqzqKW9eTh6OIyoFcGujreHxnn-yEwcqD7JSCY4rJTx1ZQ6gGLDJjwQZKalMaA6jph57WJiaOiix3DDPR9hyAPZgGobBv_DAifbVuE2DCu4J7U6CqWzMf4XKwF36h9Dn7Jg4g98T0D3RVQe2pq0MyaYOT51oAU3ccyzSknQqV13FF6qdjQv7ExA1xtIsnvvX9MP5tpd-WiKqH8reRXC9ybumrmMslqXyvInZlzQ">
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface border-r border-outline-variant flex flex-col py-unit-margin-desktop z-40">
+<div class="px-6 mb-12 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl overflow-hidden border border-outline-variant flex-shrink-0">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A detailed headshot portrait of a young professional West African man or woman. High-contrast lighting emphasizing sleek, modern aesthetics. The background is a solid deep grey to match the high-end fintech UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChVzyb2kZ3SU4N8_DIN-HbQrxYRFki6uR7kTrHJA1pw1_J4wBLlPq2oWOnICdjOjH4cOxssOu8qWt11T-nmg5fMVSV7JtgMCN-F5tCWOkUYKu36jTxOE6qTYl91OGM9-_CUu64EvhlHL6tkqCrcgQTGeUQLTC0PzwRc51dVNq5Pi5gShrpXjCGMfm5ABZpbIRixoNNXt2_Sj1hPAPAT-TQgybMG25h6MlgWrDNtPNYzQN1nLsOQSAiKw">
+</div>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface">Wali</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Financial Control</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2 px-4">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg font-body-lg text-body-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<!-- Active Tab: Statistics -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg font-body-lg text-body-lg text-primary-fixed border-r-2 border-primary-fixed font-bold bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" data-weight="fill">analytics</span>
+<span class="">Statistics</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg font-body-lg text-body-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="">Profile</span>
+</a>
+</nav>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-title-md text-title-md font-bold h-14 rounded-lg flex items-center justify-center gap-2 hover:bg-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">add</span>
+                Add Transaction
+            </button>
+</div>
+<div class="px-4 flex flex-col gap-2">
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="">Help</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-24 px-margin-desktop pb-24 min-h-screen">
+<!-- Header & Period Selector -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Analytics</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your spending insights for this period.</p>
+</div>
+<div class="flex p-1 bg-[#1A1A1A] rounded-lg border border-[#2C2C2C]">
+<button class="px-6 py-2 rounded-md font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Week</button>
+<button class="px-6 py-2 rounded-md font-body-sm text-body-sm bg-[#2C2C2C] text-on-surface font-semibold shadow-sm transition-colors border border-outline-variant/30">Month</button>
+<button class="px-6 py-2 rounded-md font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Year</button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Main Chart Area (Trend) -->
+<div class="col-span-12 lg:col-span-8 bg-[#1A1A1A] border border-[#2C2C2C] rounded-2xl p-6 flex flex-col">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-title-md text-title-md text-on-surface mb-1">Monthly Flow</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Incoming vs Outgoing</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-fixed"></div>
+<span class="font-body-sm text-body-sm text-on-surface">Income</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#2C2C2C]"></div>
+<span class="font-body-sm text-body-sm text-on-surface">Expense</span>
+</div>
+</div>
+</div>
+<!-- Placeholder for Line Chart Visual -->
+<div class="flex-1 min-h-[300px] flex items-end justify-between relative pt-10">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10">
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+<div class="border-t border-white w-full"></div>
+</div>
+<!-- Bars (Simplified visual rep) -->
+<div class="w-12 h-[40%] chart-bar-fill rounded-t-sm z-10 relative group">
+<div class="absolute bottom-0 w-full h-[60%] bg-[#2C2C2C] rounded-t-sm"></div>
+</div>
+<div class="w-12 h-[60%] chart-bar-fill rounded-t-sm z-10 relative">
+<div class="absolute bottom-0 w-full h-[40%] bg-[#2C2C2C] rounded-t-sm"></div>
+</div>
+<div class="w-12 h-[30%] chart-bar-fill rounded-t-sm z-10 relative">
+<div class="absolute bottom-0 w-full h-[80%] bg-[#2C2C2C] rounded-t-sm"></div>
+</div>
+<div class="w-12 h-[80%] chart-bar-fill rounded-t-sm z-10 relative">
+<div class="absolute bottom-0 w-full h-[50%] bg-[#2C2C2C] rounded-t-sm"></div>
+</div>
+<div class="w-12 h-[50%] chart-bar-fill rounded-t-sm z-10 relative">
+<div class="absolute bottom-0 w-full h-[30%] bg-[#2C2C2C] rounded-t-sm"></div>
+</div>
+<div class="w-12 h-[90%] chart-bar-fill rounded-t-sm z-10 relative">
+<div class="absolute bottom-0 w-full h-[70%] bg-[#2C2C2C] rounded-t-sm"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 border-t border-[#2C2C2C] pt-4 font-body-sm text-body-sm text-on-surface-variant">
+<span class="">Jan</span><span class="">Feb</span><span class="">Mar</span><span class="">Apr</span><span class="">May</span><span class="">Jun</span>
+</div>
+</div>
+<!-- Side Cards -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+<!-- Category Breakdown (Pie pseudo-visual) -->
+<div class="bg-[#1A1A1A] border border-[#2C2C2C] rounded-2xl p-6">
+<h3 class="font-title-md text-title-md text-on-surface mb-6">By Category</h3>
+<div class="flex items-center justify-center mb-8 relative">
+<div class="w-40 h-40 rounded-full border-[16px] border-[#2C2C2C] relative">
+<!-- CSS pure visual approximation of pie chart segments -->
+<div class="absolute inset-0 rounded-full border-[16px] border-primary-fixed" style="clip-path: polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 50%); border-radius: 50%;"></div>
+<div class="absolute inset-0 rounded-full border-[16px] border-[#474747]" style="clip-path: polygon(50% 50%, 0px 50%, 0px 0px, 50% 0px); border-radius: 50%;"></div>
+</div>
+<div class="absolute flex flex-col items-center">
+<span class="font-title-md text-title-md text-on-surface">GNF</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-primary-fixed"></div>
+<span class="font-body-sm text-body-sm text-on-surface">Housing</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">45%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-[#2C2C2C]"></div>
+<span class="font-body-sm text-body-sm text-on-surface">Food</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">30%</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-[#474747]"></div>
+<span class="font-body-sm text-body-sm text-on-surface">Transport</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">25%</span>
+</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="bg-primary-fixed rounded-2xl p-6 text-on-primary-fixed relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-title-md text-title-md mb-2">Total Saved</h3>
+<p class="font-display-lg text-display-lg mb-1">GNF 1.2M</p>
+<p class="font-body-sm text-body-sm opacity-80">+12% from last month</p>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-primary-fixed-dim rounded-full opacity-50 blur-xl"></div>
+</div>
+</div>
+<!-- Top Expenses Table -->
+<div class="col-span-12 bg-[#1A1A1A] border border-[#2C2C2C] rounded-2xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-md text-title-md text-on-surface">Top Expenses</h3>
+<button class="font-body-sm text-body-sm text-primary-fixed hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-0">
+<!-- Row 1 -->
+<div class="flex items-center justify-between py-4 border-b border-[#2C2C2C]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-[#2C2C2C] flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Apartment Rent</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Housing</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md text-white">- GNF 4,500,000</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 1, 2023</p>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center justify-between py-4 border-b border-[#2C2C2C]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-[#2C2C2C] flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Le Bistrot</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Food &amp; Dining</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md text-white">- GNF 350,000</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 12, 2023</p>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="flex items-center justify-between py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-[#2C2C2C] flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">flight</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Air France</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Travel</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md text-white">- GNF 8,200,000</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oct 15, 2023</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+</body></html>

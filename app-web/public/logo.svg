@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fond arrondi "squircle", identique au conteneur d'icône de la maquette -->
+  <rect width="100" height="100" rx="22" fill="#121414"/>
+  <!-- Monogramme "W" — trait unique, épaisseur constante, bouts arrondis -->
+  <path d="M 25,33 L 38,65 L 50,41 L 62,65 L 75,33"
+        fill="none" stroke="#fce300" stroke-width="9.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
