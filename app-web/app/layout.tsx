@@ -48,6 +48,14 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#121414",
+  // 🧠 Concept — interactiveWidget
+  // Par défaut, sur mobile, le clavier virtuel se pose *par-dessus* la page :
+  // la "hauteur d'écran" (100vh) que le CSS voit ne change pas, donc une modale
+  // positionnée en bas peut se retrouver cachée derrière le clavier.
+  // "resizes-content" dit au navigateur de rétrécir la vraie zone visible
+  // quand le clavier s'ouvre, comme un redimensionnement de fenêtre — nos
+  // classes Tailwind basées sur la hauteur d'écran s'adaptent alors toutes seules.
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -9,6 +9,13 @@
   --muted: #cdc7ab;
   --primary: #fce300;
   --on-primary: #201c00;
+
+  /* Seule entorse à la palette jaune/gris : un vert et un rouge doux,
+     réservés aux indicateurs de tendance financière (dépenses en
+     hausse/baisse) où le code couleur rouge=mauvais/vert=bon est un repère
+     universel qu'un simple jaune ne peut pas transmettre. */
+  --positive: #34d399;
+  --negative: #f87171;
 }
 
 @theme inline {
@@ -20,6 +27,8 @@
   --color-muted: var(--muted);
   --color-primary: var(--primary);
   --color-on-primary: var(--on-primary);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
 
   --font-display: var(--font-jakarta);
   --font-label: var(--font-inter);
@@ -33,6 +42,8 @@
   --animate-fade-in-up: fade-in-up 0.4s ease-out both;
   --animate-fade-in: fade-in 0.3s ease-out both;
   --animate-scale-in: scale-in 0.18s ease-out both;
+  --animate-draw-line: draw-line 1.1s ease-out both;
+  --animate-grow-bar: grow-bar 0.6s ease-out both;
 }
 
 body {
@@ -90,6 +101,30 @@ body {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* 🧠 Concept — pathLength normalisé
+   `<path pathLength="1">` dit au SVG de traiter la longueur de ce tracé
+   comme valant "1", quelle que soit sa vraie longueur en pixels. On peut
+   alors animer stroke-dashoffset de 1 à 0 sans calculer la longueur réelle
+   de la courbe en JS — le tracé "se dessine" progressivement. */
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Barres de la légende catégories : grandissent depuis 0 jusqu'à leur largeur finale. */
+@keyframes grow-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 

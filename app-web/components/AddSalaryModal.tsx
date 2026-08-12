@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import { addTransaction } from "@/lib/storage";
-import { formatAmount } from "@/lib/format";
+import { formatAmount, amountInputSizeClass } from "@/lib/format";
 
 interface AddSalaryModalProps {
   isOpen: boolean;
@@ -57,14 +57,16 @@ export default function AddSalaryModal({
           <span className="text-xs uppercase tracking-wider text-muted font-bold">
             Salaire mensuel
           </span>
-          <div className="flex items-end gap-2">
+          <div className="flex items-end gap-2 w-full">
             <input
               autoFocus
               inputMode="numeric"
               placeholder="0"
               value={amount}
               onChange={(e) => handleAmountChange(e.target.value)}
-              className="bg-transparent text-primary text-5xl font-extrabold text-center outline-none w-48 placeholder-border"
+              className={`bg-transparent text-primary ${amountInputSizeClass(
+                amount || "0"
+              )} font-extrabold text-center outline-none w-full min-w-0 placeholder-border transition-[font-size] duration-150`}
             />
           </div>
           <span className="text-muted font-semibold">GNF</span>

@@ -1,4 +1,5 @@
 import type { CategoryId, Transaction } from "./types";
+import { MONTH_SHORT_LABELS, WEEKDAY_SHORT_LABELS } from "./format";
 
 /** Transactions du mois/année sélectionné, triées de la plus récente à la plus ancienne. */
 export function filterByMonth(
@@ -126,4 +127,93 @@ export function getCategoryBreakdown(expenses: Transaction[]): CategoryBreakdown
 /** Les N dépenses individuelles les plus élevées de la période. */
 export function getTopExpenses(expenses: Transaction[], n = 3): Transaction[] {
   return [...expenses].sort((a, b) => b.amount - a.amount).slice(0, n);
+}
+
+/**
+ * Même longueur de période, mais juste avant celle en cours — sert à
+ * calculer un delta ("+12% vs la semaine dernière"). Pour "mois"/"année", on
+ * compare à la période précédente complète (pas un miroir exact jour pour
+ * jour) : plus simple, et largement suffisant pour une tendance indicative.
+ */
+export function getPreviousDateRange(
+  period: StatsPeriod,
+  referenceDate: Date = new Date()
+): { start: string; end: string } {
+  if (period === "week") {
+    const end = new Date(referenceDate);
+    end.setDate(end.getDate() - 7);
+    const start = new Date(end);
+    start.setDate(start.getDate() - 6);
+    return { start: toDateKey(start), end: toDateKey(end) };
+  }
+
+  if (period === "month") {
+    const start = new Date(referenceDate.getFullYear(), referenceDate.getMonth() - 1, 1);
+    const end = new Date(referenceDate.getFullYear(), referenceDate.getMonth(), 0); // jour 0 = dernier jour du mois précédent
+    return { start: toDateKey(start), end: toDateKey(end) };
+  }
+
+  const start = new Date(referenceDate.getFullYear() - 1, 0, 1);
+  const end = new Date(referenceDate.getFullYear() - 1, 11, 31);
+  return { start: toDateKey(start), end: toDateKey(end) };
+}
+
+export interface TrendPoint {
+  key: string;
+  label: string;
+  total: number;
+}
+
+/**
+ * Série temporelle des dépenses sur la période, découpée en "buckets"
+ * adaptés à l'échelle : un point par jour pour semaine/mois (sinon un
+ * graphe "année" en jours serait ~365 points illisibles), un point par mois
+ * pour l'année.
+ */
+export function getExpenseTrend(
+  expenses: Transaction[],
+  period: StatsPeriod,
+  referenceDate: Date = new Date()
+): TrendPoint[] {
+  if (period === "year") {
+    const year = referenceDate.getFullYear();
+    const currentMonth = referenceDate.getMonth(); // 0-11
+    const totalsByMonth = new Array(currentMonth + 1).fill(0) as number[];
+
+    for (const expense of expenses) {
+      const m = Number(expense.date.slice(5, 7)) - 1;
+      if (m >= 0 && m <= currentMonth) totalsByMonth[m] += expense.amount;
+    }
+
+    return totalsByMonth.map((total, i) => ({
+      key: `${year}-${i}`,
+      label: MONTH_SHORT_LABELS[i],
+      total,
+    }));
+  }
+
+  // Semaine / mois : un point par jour.
+  const { start, end } = getDateRangeForPeriod(period, referenceDate);
+  const totalsByDay = new Map<string, number>();
+  for (const expense of expenses) {
+    totalsByDay.set(expense.date, (totalsByDay.get(expense.date) ?? 0) + expense.amount);
+  }
+
+  const points: TrendPoint[] = [];
+  const cursor = new Date(`${start}T00:00:00`);
+  const endDate = new Date(`${end}T00:00:00`);
+
+  while (cursor <= endDate) {
+    const key = toDateKey(cursor);
+    // `getDay()` renvoie 0 pour dimanche ; `(jour + 6) % 7` décale pour que
+    // lundi soit l'index 0, comme dans WEEKDAY_SHORT_LABELS.
+    const label =
+      period === "week"
+        ? WEEKDAY_SHORT_LABELS[(cursor.getDay() + 6) % 7]
+        : String(cursor.getDate());
+    points.push({ key, label, total: totalsByDay.get(key) ?? 0 });
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  return points;
 }

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import { addTransaction } from "@/lib/storage";
-import { formatAmount } from "@/lib/format";
+import { formatAmount, amountInputSizeClass } from "@/lib/format";
 import { todayDateKey } from "@/lib/calculations";
 import { CATEGORIES } from "@/lib/categories";
 import type { CategoryId } from "@/lib/types";
@@ -61,7 +61,9 @@ export default function AddExpenseModal({ isOpen, onClose, onSaved }: AddExpense
             placeholder="0"
             value={amount}
             onChange={(e) => handleAmountChange(e.target.value)}
-            className="bg-transparent text-primary text-5xl font-extrabold text-center outline-none w-full placeholder-border"
+            className={`bg-transparent text-primary ${amountInputSizeClass(
+              amount || "0"
+            )} font-extrabold text-center outline-none w-full min-w-0 placeholder-border transition-[font-size] duration-150`}
           />
           <span className="text-muted font-semibold">GNF</span>
         </div>
@@ -98,7 +100,7 @@ export default function AddExpenseModal({ isOpen, onClose, onSaved }: AddExpense
         </div>
 
         {/* Date optionnelle (par défaut aujourd'hui) */}
-        <div>
+        <div className="min-w-0">
           <label className="block text-xs uppercase tracking-wider text-muted font-bold mb-2">
             Date
           </label>
@@ -106,7 +108,7 @@ export default function AddExpenseModal({ isOpen, onClose, onSaved }: AddExpense
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full bg-surface border border-border rounded-card px-4 py-3 text-on-surface outline-none focus:border-primary"
+            className="w-full max-w-full min-w-0 box-border bg-surface border border-border rounded-card px-4 py-3 text-on-surface outline-none focus:border-primary [color-scheme:dark]"
           />
         </div>
 
